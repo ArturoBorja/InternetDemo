@@ -35,7 +35,7 @@ public class AdaptadorLibros extends RecyclerView.Adapter<ItemHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ItemHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final ItemHolder holder, final int position) {
         holder.txt_itemrecycle_title.setText(datos.get(position).title+" - "+datos.get(position).publishedDate);
         holder.txt_itemrecycle_pages.setText("Pag: "+datos.get(position).pageCount);
         holder.txt_itemrecycle_subtitle.setText(datos.get(position).subtitle);
@@ -43,9 +43,9 @@ public class AdaptadorLibros extends RecyclerView.Adapter<ItemHolder> {
         for (String autor : datos.get(position).Autor) {
             holder.txt_itemrecycle_autor.setText(holder.txt_itemrecycle_autor.getText().toString()+", "+autor);
         }
+        //
         if(datos.get(position).saleability){
             holder.btn_itemrecycle_buy.setVisibility(View.VISIBLE);
-            holder.btn_itemrecycle_buy.setHeight(30);
             holder.btn_itemrecycle_buy.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -53,6 +53,15 @@ public class AdaptadorLibros extends RecyclerView.Adapter<ItemHolder> {
                 }
             });
         }
+        holder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                datos.remove(position);
+                holder.adaptador.notifyDataSetChanged();
+                return true;
+            }
+        });
+
     }
 
     @Override

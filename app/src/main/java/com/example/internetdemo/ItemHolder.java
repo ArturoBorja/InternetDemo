@@ -19,7 +19,7 @@ public class ItemHolder extends RecyclerView.ViewHolder {
     public Button btn_itemrecycle_buy;
     AdaptadorLibros adaptador;
 
-    public ItemHolder(@NonNull View itemView, final AdaptadorLibros adaptador) {
+    public ItemHolder(@NonNull final View itemView, final AdaptadorLibros adaptador) {
         super(itemView);
         this.adaptador = adaptador;
         cardView=itemView.findViewById(R.id.card_view);
@@ -28,11 +28,6 @@ public class ItemHolder extends RecyclerView.ViewHolder {
         txt_itemrecycle_autor=itemView.findViewById(R.id.txt_itemrecycle_autor);
         txt_itemrecycle_pages=itemView.findViewById(R.id.txt_itemrecycle_pages);
         btn_itemrecycle_buy=itemView.findViewById(R.id.btn_itemrecycle_buy);
-        cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Toast.makeText(adaptador.context,txt_itemrecycle.getText().toString(),Toast.LENGTH_SHORT).show();
-            }
-        });
+
     }
 }
